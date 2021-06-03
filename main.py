@@ -1,5 +1,6 @@
 # importing libraries
-import pandas
+from typing import Dict
+
 import pandas as pd
 import numpy as np
 
@@ -19,10 +20,6 @@ print(drinks.isnull().values.sum())
 
 # Looking for duplicate records
 boolean = drinks.duplicated().any()
-
-# Replacing & symbol in country column to make text easier to work with.
-and_dict = {'&':'and'}
-drinks.replace(and_dict, regex=True, inplace=True)
 
 # Renaming the columns for easiness to work with.
 # Checking the column names updated
