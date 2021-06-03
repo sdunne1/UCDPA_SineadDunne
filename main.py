@@ -27,6 +27,8 @@ drinks.rename(columns={'beer_servings': 'beer',
                         'wine_servings': 'wine',
                         'spirit_servings': 'spirit',
                         'total_litres_of_pure_alcohol': 'total litres'}, inplace=True)
-print(drinks.columns)
+
+# Sorting my dataframe to alphabetical order
+drinks.sort_values("country", ascending=True)
 
 # Adding a new column to dataframe named continent
