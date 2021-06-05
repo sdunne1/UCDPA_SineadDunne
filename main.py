@@ -22,20 +22,21 @@ print(dup)
 
 # Renaming the columns for easiness to work with.
 # Checking the column names updated
-drinks.rename(columns={'beer_servings': 'beer',
-                       'wine_servings': 'wine', 'spirit_servings': 'spirit',
-                       'total_litres_of_pure_alcohol': 'total_litres'})
-print(drinks)
+drinks = drinks.rename(columns={'beer_servings': 'beer', 'wine_servings': 'wine',
+                       'spirit_servings': 'spirit', 'total_litres_of_pure_alcohol': 'total_litres'}, inplace=True)
 
+# need to fix above rename statement, and then correct sort values below.
+print(drinks)
 
 # Setting df index column.
 drinks.set_index("country")
 
 # Sorting my dataframe by country with highest total litres alcohol pp/py
-# drinks.sort_values("total_litres", ascending=True)
+drinks.sort_values('total_litres_of_pure_alcohol', ascending=False)
 
 # Adding a new column to dataframe named continent,using merge and matching on country.
 # Read in 2nd data set .csv file
 country_con = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\continents.csv')
 
 # Merging datasets drinks and country_con
+# drinks_con = pd.merge()
