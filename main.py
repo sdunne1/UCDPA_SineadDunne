@@ -2,9 +2,9 @@
 import pandas as pd
 import numpy as np
 
-# Read in my .csv file
+# Read in my .csv file, setting index column.
 pd.set_option("display.max_rows", 200, "display.max_columns", 5)
-drinks = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\drinks.csv')
+drinks = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\drinks.csv', index_col=["country"])
 
 # First view of my dataset
 print(drinks.head())
@@ -27,9 +27,6 @@ drinks = drinks.rename(columns={'beer_servings': 'beer', 'wine_servings': 'wine'
 
 # need to fix above rename statement, and then correct sort values below.
 print(drinks)
-
-# Setting df index column.
-drinks.set_index("country")
 
 # Sorting my dataframe by country with highest total litres alcohol pp/py
 drinks.sort_values('total_litres_of_pure_alcohol', ascending=False)
