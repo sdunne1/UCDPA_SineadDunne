@@ -4,36 +4,31 @@ import numpy as np
 
 # Read in my .csv file, setting index column.
 pd.set_option("display.max_rows", 200, "display.max_columns", 5)
-drinks = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\drinks.csv', index_col=["country"])
+df_drinks = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\drinks.csv', header = 0, names=['COUNTRY','BEER','SPIRIT','WINE','TOTAL_LITRES'])
 
-# First view of my dataset
-print(drinks.head())
-
-# Finding any null values & replacing with zero.
-print(drinks.isnull().values.sum())
-drinks = drinks.replace(np.NaN, 0)
-
-# Checking dataframe to ensure replace was successful.
-print(drinks.isnull().values.sum())
-
-# Looking for duplicate records
-dup = drinks.duplicated().any()
-print(dup)
-
-# Renaming the columns for easiness to work with.
-# Checking the column names updated
-drinks = drinks.rename(columns={'beer_servings': 'beer', 'wine_servings': 'wine',
-                       'spirit_servings': 'spirit', 'total_litres_of_pure_alcohol': 'total_litres'}, inplace=True)
-
-# need to fix above rename statement, and then correct sort values below.
-print(drinks)
+# Setting index for dataframe df_drinks
+df_drinks.set_index('COUNTRY')
 
 # Sorting my dataframe by country with highest total litres alcohol pp/py
-drinks.sort_values('total_litres_of_pure_alcohol', ascending=False)
+df_drinks.sort_values('TOTAL_LITRES', ascending=False)
+
+# First view of my dataset
+print(df_drinks.head())
+
+# Finding any null values & replacing with zero.
+print(df_drinks.isnull().values.sum())
+df_drinks = df_drinks.replace(np.NaN, 0)
+
+# Checking dataframe to ensure replace was successful.
+print(df_drinks.isnull().values.sum())
+
+# Looking for duplicate records
+dup = df_drinks.duplicated().any()
+print(dup)
 
 # Adding a new column to dataframe named continent,using merge and matching on country.
 # Read in 2nd data set .csv file
-country_con = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\continents.csv')
+country_con = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\continents.csv', index_col = ["country"])
 
 # Merging datasets drinks and country_con
 # drinks_con = pd.merge()
