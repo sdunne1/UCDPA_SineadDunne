@@ -37,3 +37,4 @@ print(df_countrycon)
 # Merging datasets drinks and country_con
 df_drinks_con = pd.merge(df_drinks, df_countrycon, on='COUNTRY', how='left')
 print(df_drinks_con)
+df_drinks_con.set_index('COUNTRY')
