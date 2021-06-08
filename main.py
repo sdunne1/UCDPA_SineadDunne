@@ -1,6 +1,16 @@
 # importing libraries
 import pandas as pd
 import numpy as np
+from kaggle.api.kaggle_api_extended import KaggleApi
+
+# Using an API token in a json file located in C:\Windows\s_dun\.kaggle.
+# I am authenticating my kaggle credentials to retrieve the dataset.
+api = KaggleApi()
+api.authenticate()
+
+# downloading from kaggle.com/c8debreaker619/alcohol-comsumption-around-the-world
+# Writing the dataset file to my current project directory path with './'
+api.dataset_download_file('codebreaker619/alcohol-comsumption-around-the-world', file_name='drinks.csv')
 
 # Read in my .csv file, setting index column.
 pd.set_option("display.max_rows", 200, "display.max_columns", 5)
@@ -38,3 +48,6 @@ print(df_countrycon)
 df_drinks_con = pd.merge(df_drinks, df_countrycon, on='COUNTRY', how='left')
 print(df_drinks_con)
 df_drinks_con.set_index('COUNTRY')
+
+# Visualisation 1: Find the average total litres pp by continent
+# Subsetting columns 'continent' and 'total litres'
