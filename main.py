@@ -20,7 +20,7 @@ df_drinks = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\drinks.csv', 
 # Ensure column names are updated correctly by displaying them out in a list.
 for col in df_drinks.columns:
     print(col)
-    
+
 # First view of my dataset
 print(df_drinks.head())
 
@@ -54,7 +54,7 @@ df_drinks_con.set_index('COUNTRY')
 print(df_drinks_con)
 
 # Downloading cleaned dataframe as csv file to import into drinks_viz.py
-df_drinks_con.to_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\df_drinks_con.csv', index=True, sep=',', header=False)
+df_drinks_con.to_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\df_drinks_con.csv', index=False, sep=',', header=False)
 
 
 
