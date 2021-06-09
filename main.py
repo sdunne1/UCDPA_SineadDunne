@@ -17,11 +17,8 @@ pd.set_option("display.max_rows", 200, "display.max_columns", 5)
 df_drinks = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\drinks.csv', header=0,
                         names=['COUNTRY', 'BEER', 'SPIRIT', 'WINE', 'TOTAL_LITRES'])
 
-# Setting index for dataframe df_drinks
-df_drinks.set_index('COUNTRY')
+# Ensure column names are updated correctly by displaying them out in a list.
 
-# Sorting my dataframe by country with highest total litres alcohol pp/py
-df_drinks.sort_values('TOTAL_LITRES', ascending=False)
 
 # First view of my dataset
 print(df_drinks.head())
@@ -37,6 +34,12 @@ print(df_drinks.isnull().values.sum())
 dup = df_drinks.duplicated().any()
 print(dup)
 
+# Sorting my dataframe by country with highest total litres alcohol pp/py
+df_drinks.sort_values('TOTAL_LITRES', ascending=False)
+
+# Setting index for dataframe df_drinks
+df_drinks.set_index('COUNTRY')
+
 # Adding a new column to dataframe named continent,using merge and matching on country.
 # Read in 2nd data set .csv file
 pd.set_option("display.max_rows", 200, "display.max_columns", 5)
@@ -49,6 +52,8 @@ df_drinks_con = pd.merge(df_drinks, df_countrycon, on='COUNTRY', how='left')
 print(df_drinks_con)
 df_drinks_con.set_index('COUNTRY')
 
-# Visualisation 1: Find the average total litres pp by continent
-# Subsetting columns 'continent' and 'total litres'
+# Downloading cleaned dataframe as csv file to import into drinks_viz.py
+df_drinks_con.to_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\df_drinks_con.csv', index=True, sep=',', header=True)
+
+
 
