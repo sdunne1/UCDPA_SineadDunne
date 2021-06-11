@@ -4,7 +4,7 @@ import numpy as np
 from kaggle.api.kaggle_api_extended import KaggleApi
 
 # Using an API token in a json file located in C:\Windows\s_dun\.kaggle.
-# I am authenticating my kaggle credentials to retrieve the dataset.
+# API Authentication using kaggle account credentials to retrieve the dataset.
 api = KaggleApi()
 api.authenticate()
 
