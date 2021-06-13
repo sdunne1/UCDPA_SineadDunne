@@ -11,5 +11,5 @@ print(df_drinks_con)
 # Insight 1: Top 10 countries with the highest total litres consumed per person
 total_by_country = df_drinks_con[['COUNTRY','TOTAL_LITRES']].groupby("COUNTRY").sum().sort_values(by='TOTAL_LITRES', ascending=False).head(10)
 total_by_country.plot(xlabel="Country", ylabel="Total Litres consumed",
-                                                            kind="bar", title="Total litres consumed by top ten countries")
+                                                            kind="bar", title="Total litres consumed - top ten countries")
 plt.show()
