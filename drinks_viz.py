@@ -13,28 +13,18 @@ print(df_drinks_con)
 # Insight 1: Top 10 countries with the highest total litres consumed per person
 total_by_country = df_drinks_con[['COUNTRY', 'TOTAL_LITRES']].groupby("COUNTRY").sum().sort_values(by='TOTAL_LITRES',
                                                                                           ascending=False).head(10)
-total_by_country.plot(xlabel="Country", ylabel="Total Litres consumed per person",
-                                                        kind="bar", title="Total litres consumed - top ten countries (2010)")
+total_by_country.plot(xlabel="COUNTRY", ylabel="TOTAL LITRES",
+                                        kind="bar", title="Total Litres consumed per capita by Country (2010)", rot=45)
 plt.show()
 
-# Visualisation 1: Scatter plot chart to show sum of alcohol servings by continent.
+# Visualisation 1: Scatter plot chart to show sum of servings for each alcohol by continent for year 2010.
+sns.load_dataset(df_drinks_con)
+df_drinks_con.head()
+
+# df_drinks_con.loc[:, ["CONTINENT", "COUNTRY", "BEER", "WINE", "SPIRIT"]]
+
 scatter_drinks = df_drinks_con.groupby(["CONTINENT"]).agg({'BEER': sum, 'WINE': sum, 'SPIRIT': sum})
+print(scatter_drinks)
 
-fig, ax = plt.subplots()
-ax.plot(scatter_drinks['CONTINENT'], scatter_drinks['BEER'])
-
-ax1 = scatter_drinks.plot(kind='scatter', x='WINE', y='CONTINENT', color='r')
-ax2 = df.plot(kind='scatter', x='BEER', y='CONTINENT', color='b', ax=ax1)
-ax3 = df.plot(kind='scatter', x='SPIRIT', y='CONTINENT', color='g', ax=ax1)
-
+sns.relplot(x='CONTINENT', y='BEER', data=scatter_drinks)
 plt.show()
-
-
-
-import numpy as np
-import hvplot.pandas
-import pandas as pd
-
-df = pd.DataFrame(np.random.randn(100, 6), columns=['a', 'b', 'c', 'd', 'e', 'f'])
-
-df.hvplot(x='a', y=['b', 'c', 'd', 'e'], kind='scatter')
