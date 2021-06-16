@@ -27,8 +27,12 @@ spirits = df_drinks_con[['COUNTRY', 'SPIRIT']].groupby("COUNTRY").sum().sort_val
 ax = sns.barplot(x="SPIRIT", y="COUNTRY", data=spirits)
 ax.set(ylabel='COUNTRY', xlabel='SPIRIT SERVINGS')
 ax.set_title("Top 10 Global Spirits Consumers")
-#
-#
+
+# Visualisation 2C: Top 10 countries for beer consumers
+beer = df_drinks_con[['COUNTRY', 'BEER']].groupby("COUNTRY").sum().sort_values(by="BEER", ascending=False).head(10)
+ax = sns.barplot(x="BEER", y="COUNTRY", data=beer)
+ax.set(ylabel='COUNTRY', xlabel='BEER SERVINGS')
+ax.set_title("Top 10 Global Beer Consumers")
 #
 # Scatter plot chart to show sum of servings for each alcohol by continent for year 2010.
 #sns.load_dataset(df_drinks_con)
