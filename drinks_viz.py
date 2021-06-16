@@ -19,12 +19,8 @@ plt.show()
 
 # Visualisation 1: Scatter plot chart to show sum of servings for each alcohol by continent for year 2010.
 sns.load_dataset(df_drinks_con)
-df_drinks_con.head()
 
-# df_drinks_con.loc[:, ["CONTINENT", "COUNTRY", "BEER", "WINE", "SPIRIT"]]
+# scatter_drinks = df_drinks_con.groupby(["CONTINENT"]).agg({'BEER': sum, 'WINE': sum, 'SPIRIT': sum})
+sns.scatterplot(data=df_drinks_con, x="COUNTRY", Y='BEER', hue="CONTINENT")
 
-scatter_drinks = df_drinks_con.groupby(["CONTINENT"]).agg({'BEER': sum, 'WINE': sum, 'SPIRIT': sum})
-print(scatter_drinks)
 
-sns.relplot(x='CONTINENT', y='BEER', data=scatter_drinks)
-plt.show()
