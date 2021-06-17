@@ -31,7 +31,7 @@ df_drinks = df_drinks.replace(np.NaN, 0)
 # Checking dataframe to ensure replace was successful.
 print(df_drinks.isnull().values.sum())
 
-# Looking for duplicate records
+# Looking for duplicate records.
 dup = df_drinks.duplicated().any()
 print(dup)
 
