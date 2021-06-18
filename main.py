@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 from kaggle.api.kaggle_api_extended import KaggleApi
+import csv
 
 # Using an API token in a json file located in C:\Windows\s_dun\.kaggle.
 # API Authentication using kaggle account credentials to retrieve the dataset.
@@ -44,8 +45,14 @@ df_drinks.set_index('COUNTRY')
 # Adding a new column to dataframe named continent,using merge and matching on country.
 # Read in 2nd data set .csv file
 pd.set_option("display.max_rows", 200, "display.max_columns", 5)
-df_countrycon = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\continents.csv', header=0,
-                            names=['COUNTRY', 'CONTINENT'])
+dict_countrycon = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\continents.csv', header=0).to_dict()
+
+# Print my keys and values from the countrycon dictionary
+for key, value in dict_countrycon.items():
+    print(key, value)
+
+# Converting my dictionary to a dataframe
+df_countrycon = pd.DataFrame.from_dict(dict_countrycon)
 print(df_countrycon.head(4))
 
 # Merging datasets drinks and country_con
