@@ -47,7 +47,7 @@ df_drinks.set_index('COUNTRY')
 pd.set_option("display.max_rows", 200, "display.max_columns", 5)
 dict_countrycon = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\continents.csv', header=0).to_dict()
 
-# Print my keys and values from the countrycon dictionary
+# Print my keys and values from the dict_countrycon dictionary
 for key, value in dict_countrycon.items():
     print(key, value)
 
@@ -55,10 +55,15 @@ for key, value in dict_countrycon.items():
 df_countrycon = pd.DataFrame.from_dict(dict_countrycon)
 print(df_countrycon.head(4))
 
+df_countrycon.columns= df_countrycon.columns.str.upper()
+
 # Merging datasets drinks and country_con
 df_drinks_con = pd.merge(df_drinks, df_countrycon, on='COUNTRY', how='left')
 df_drinks_con.set_index('COUNTRY')
 print(df_drinks_con.head(4))
+
+
+
 
 # Downloading cleaned dataframe as csv file to import into drinks_viz.py
 df_drinks_con.to_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\df_drinks_con.csv', index=False, sep=',', header=True)
