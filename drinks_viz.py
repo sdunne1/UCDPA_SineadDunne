@@ -34,7 +34,8 @@ ax = sns.barplot(x="BEER", y="COUNTRY", data=beer)
 ax.set(ylabel='COUNTRY', xlabel='BEER SERVINGS')
 ax.set_title("Top 10 Global Beer Consumers")
 
-# Visualisation 3 Alcohol preference by continent
+# Visualisation 3 Alcohol preference by continent: Setting up
+# Create new column in dataframe. Create function that gets max value of columns BEER, SPIRIT, WINE & RETURN COLUMN HEADER TO PREF.
 df_drinks_con['PREF'] = ""
 
 def maxFunction(value1, value2, value3):
@@ -48,8 +49,7 @@ def maxFunction(value1, value2, value3):
 for index, row in df_drinks_con.iterrows():
     countryName = row.iloc[0]
     largest = row.index[maxFunction(row.iloc[1],row.iloc[2],row.iloc[3])]
-
     df_drinks_con.loc[index,'PREF'] = largest
 
-
+# Visualisation 3: Alcohol pref by continent
 
