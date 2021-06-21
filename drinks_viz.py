@@ -2,12 +2,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # Read in merged dataframe csv file: df_drinks_con.csv
 df_drinks_con = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\df_drinks_con.csv', sep=',', header=0,
                             index_col=0)
 df_drinks_con.sort_values(["TOTAL_LITRES"], ascending=True)
-print(df_drinks_con.head(4))
 
 # Visualisation 1: Top 10 countries with the highest total litres consumed per person
 total_by_country = df_drinks_con[['COUNTRY', 'TOTAL_LITRES']].groupby("COUNTRY").sum().sort_values(by='TOTAL_LITRES',
@@ -35,7 +35,8 @@ ax.set(ylabel='COUNTRY', xlabel='BEER SERVINGS')
 ax.set_title("Top 10 Global Beer Consumers")
 
 # Visualisation 3 Alcohol preference by continent: Setting up
-# Create new column in dataframe. Create function that gets max value of columns BEER, SPIRIT, WINE & RETURN COLUMN HEADER TO PREF.
+# Create new column in dataframe.
+# # Create function that gets max value of columns BEER, SPIRIT, WINE & RETURN COLUMN HEADER TO PREF.
 df_drinks_con['PREF'] = ""
 
 def maxFunction(value1, value2, value3):
@@ -48,8 +49,17 @@ def maxFunction(value1, value2, value3):
 
 for index, row in df_drinks_con.iterrows():
     countryName = row.iloc[0]
-    largest = row.index[maxFunction(row.iloc[1],row.iloc[2],row.iloc[3])]
+    largest = row.index[maxFunction(row.iloc[1], row.iloc[2], row.iloc[3])]
     df_drinks_con.loc[index,'PREF'] = largest
+    print(df_drinks_con.columns)
 
 # Visualisation 3: Alcohol pref by continent
+pref_results = df_drinks_con.groupby("CONTINENT")["PREF"].value_counts()
 
+# Pie Chart
+y = np.array(["SPIRIT", "BEER", "BEER", "SPIRIT", "BEER", "BEER"])
+mylabels = ["Asia", "Africa", "Europe", "North America", "South America", "Oceania"]
+myexplode = [0.0, 0.2, 0, 0, 0, 0]
+plt.pie(y, labels=mylabels, startangle=90, explode=myexplode, shadow=True)
+plt.legend(title="Preferred alcohol type by Continent")
+plt.show()
