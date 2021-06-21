@@ -66,3 +66,5 @@ plt.pie(y, labels=mylabels, colors=colours, explode=myexplode, shadow=True, star
 plt.title("Preferred option by Continent")
 plt.tight_layout()
 plt.show()
+
+# end
