@@ -54,13 +54,15 @@ for index, row in df_drinks_con.iterrows():
 
 # Visualisation 3: Alcohol pref by continent Pie Chart
 pref_results = df_drinks_con.groupby("CONTINENT")["PREF"].value_counts()
+print(pref_results)
 
-y = ["SPIRIT", "BEER", "BEER", "SPIRIT", "BEER", "BEER"]
-mylabels = ["Asia", "Africa", "Europe", "North America", "South America", "Oceania"]
+# y = ["SPIRIT", "BEER", "BEER", "SPIRIT", "BEER", "BEER"]
+y = np.array([25, 42, 24, 14, 8, 11])
+mylabels = ["Asia-Spirits", "Africa-Beer", "Europe-Beer", "North America-Spirits", "South America-Beer", "Oceania-Beer"]
 myexplode = [0.0, 0.2, 0, 0, 0, 0]
-colours = ['tab:blue', 'tab:cyan', 'tab:gray', 'tab:orange', 'tab:red', 'tab:yellow']
+colours = ['tab:blue', 'tab:cyan', 'tab:gray', 'tab:orange', 'tab:red', 'tab:pink']
 
-fig, ax = plt.subplots()
-ax.pie(y, labels=mylabels, colors=colours, explode=myexplode, shadow=True, autopct='%.0f%%')
-ax.set_title("Preferred option by Continent")
+plt.pie(y, labels=mylabels, colors=colours, explode=myexplode, shadow=True, startangle=90, autopct='%1.0f%%')
+plt.title("Preferred option by Continent")
+plt.tight_layout()
 plt.show()
