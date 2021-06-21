@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # Read in merged dataframe csv file: df_drinks_con.csv
 df_drinks_con = pd.read_csv(r'C:\Users\S_Dun\Desktop\UCDPA_SineadDunne\df_drinks_con.csv', sep=',', header=0,
@@ -56,7 +57,6 @@ for index, row in df_drinks_con.iterrows():
 pref_results = df_drinks_con.groupby("CONTINENT")["PREF"].value_counts()
 print(pref_results)
 
-# y = ["SPIRIT", "BEER", "BEER", "SPIRIT", "BEER", "BEER"]
 y = np.array([25, 42, 24, 14, 8, 11])
 mylabels = ["Asia-Spirits", "Africa-Beer", "Europe-Beer", "North America-Spirits", "South America-Beer", "Oceania-Beer"]
 myexplode = [0.0, 0.2, 0, 0, 0, 0]
